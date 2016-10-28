@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ccnu.computer.dao.TextInfoMapper" >
+  <resultMap id="BaseResultMap" type="ccnu.computer.model.TextInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
+    <result column="isLabel" property="islabel" jdbcType="VARCHAR" />
+    <result column="isRelated" property="isrelated" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="topic" property="topic" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="labelname" property="labelname" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="ccnu.computer.model.TextInfo" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, comment, date, isLabel, isRelated, title, topic, url, labelname, summary
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_text
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="ResultMapWithBLOBs">
+  select * from t_text
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_text
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="ccnu.computer.model.TextInfo" >
+    insert into t_text (id, comment, date, 
+      isLabel, isRelated, title, 
+      topic, url, labelname, 
+      summary, content)
+    values (#{id,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, 
+      #{islabel,jdbcType=VARCHAR}, #{isrelated,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{topic,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{labelname,jdbcType=VARCHAR}, 
+      #{summary,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="ccnu.computer.model.TextInfo" >
+    insert into t_text
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="islabel != null" >
+        isLabel,
+      </if>
+      <if test="isrelated != null" >
+        isRelated,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="topic != null" >
+        topic,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="labelname != null" >
+        labelname,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="islabel != null" >
+        #{islabel,jdbcType=VARCHAR},
+      </if>
+      <if test="isrelated != null" >
+        #{isrelated,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null" >
+        #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="labelname != null" >
+        #{labelname,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ccnu.computer.model.TextInfo" >
+    update t_text
+    <set >
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="islabel != null" >
+        isLabel = #{islabel,jdbcType=VARCHAR},
+      </if>
+      <if test="isrelated != null" >
+        isRelated = #{isrelated,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null" >
+        topic = #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="labelname != null" >
+        labelname = #{labelname,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="ccnu.computer.model.TextInfo" >
+    update t_text
+    set comment = #{comment,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR},
+      isLabel = #{islabel,jdbcType=VARCHAR},
+      isRelated = #{isrelated,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      topic = #{topic,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      labelname = #{labelname,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ccnu.computer.model.TextInfo" >
+    update t_text
+    set comment = #{comment,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR},
+      isLabel = #{islabel,jdbcType=VARCHAR},
+      isRelated = #{isrelated,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      topic = #{topic,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      labelname = #{labelname,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

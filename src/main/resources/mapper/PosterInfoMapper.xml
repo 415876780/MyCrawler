@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ccnu.computer.dao.PosterInfoMapper" >
+  <resultMap id="BaseResultMap" type="ccnu.computer.model.PosterInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user" property="user" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="agreement" property="agreement" jdbcType="VARCHAR" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="transmit" property="transmit" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="topic" property="topic" jdbcType="VARCHAR" />
+    <result column="isLabel" property="islabel" jdbcType="VARCHAR" />
+    <result column="isRelated" property="isrelated" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="labelname" property="labelname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user, content, agreement, comment, transmit, time, topic, isLabel, isRelated, 
+    title, labelname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_poster
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+  	select * from t_poster
+  </select>
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_poster
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="ccnu.computer.model.PosterInfo" >
+    insert into t_poster (id, user, content, 
+      agreement, comment, transmit, 
+      time, topic, isLabel, 
+      isRelated, title, labelname
+      )
+    values (#{id,jdbcType=INTEGER}, #{user,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{agreement,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, #{transmit,jdbcType=VARCHAR}, 
+      #{time,jdbcType=VARCHAR}, #{topic,jdbcType=VARCHAR}, #{islabel,jdbcType=VARCHAR}, 
+      #{isrelated,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{labelname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="ccnu.computer.model.PosterInfo" >
+    insert into t_poster
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="user != null" >
+        user,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="agreement != null" >
+        agreement,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="transmit != null" >
+        transmit,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="topic != null" >
+        topic,
+      </if>
+      <if test="islabel != null" >
+        isLabel,
+      </if>
+      <if test="isrelated != null" >
+        isRelated,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="labelname != null" >
+        labelname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="user != null" >
+        #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="agreement != null" >
+        #{agreement,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="transmit != null" >
+        #{transmit,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null" >
+        #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="islabel != null" >
+        #{islabel,jdbcType=VARCHAR},
+      </if>
+      <if test="isrelated != null" >
+        #{isrelated,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="labelname != null" >
+        #{labelname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ccnu.computer.model.PosterInfo" >
+    update t_poster
+    <set >
+      <if test="user != null" >
+        user = #{user,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="agreement != null" >
+        agreement = #{agreement,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="transmit != null" >
+        transmit = #{transmit,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="topic != null" >
+        topic = #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="islabel != null" >
+        isLabel = #{islabel,jdbcType=VARCHAR},
+      </if>
+      <if test="isrelated != null" >
+        isRelated = #{isrelated,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="labelname != null" >
+        labelname = #{labelname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ccnu.computer.model.PosterInfo" >
+    update t_poster
+    set user = #{user,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      agreement = #{agreement,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR},
+      transmit = #{transmit,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      topic = #{topic,jdbcType=VARCHAR},
+      isLabel = #{islabel,jdbcType=VARCHAR},
+      isRelated = #{isrelated,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      labelname = #{labelname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
